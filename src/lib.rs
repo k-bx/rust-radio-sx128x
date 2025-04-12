@@ -858,7 +858,7 @@ where
     /// Check for transmit completion
     fn check_transmit(&mut self) -> Result<bool, Self::Error> {
         // Poll on DIO and short-circuit if not asserted
-        #[cfg(feature = "poll_irq")]
+        #[cfg(feature = "poll-irq")]
         if self.hal.get_dio()? == PinState::Low {
             return Ok(false);
         }
@@ -964,7 +964,7 @@ where
     /// Check for a received packet
     fn check_receive(&mut self, restart: bool) -> Result<bool, Self::Error> {
         // Poll on DIO and short-circuit if not asserted
-        #[cfg(feature = "poll_irq")]
+        #[cfg(feature = "poll-irq")]
         if self.hal.get_dio()? == PinState::Low {
             return Ok(false);
         }
